@@ -49,7 +49,7 @@
     },
     {
       "id": "node-f",
-      "label": "USDC (demo token)",
+      "label": "Demo Stablecoin",
       "type": "token",
       "address_demo": "0xDEMO005...FFFF",
       "x": 400,

@@ -47,7 +47,7 @@ Coinstellation ships with synthetic, clearly labeled demo data located in `src/d
 |---|---|
 | `wallet` | Terracotta (`#BF4E32`) |
 | `exchange` | Steel blue (`#5B7EA6`) |
-| `protocol` | Muted purple (`#7A6B9E`) |
+| `protocol` | Muted slate teal (`#6E8B8A`) |
 | `token` | Warm amber (`#B88A4A`) |
 | `defi` | Brick (`#D4705A`) |
 | `institution` | Dark green (`#2F8F67`) |
