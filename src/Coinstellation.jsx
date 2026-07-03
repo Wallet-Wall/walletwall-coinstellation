@@ -6,7 +6,7 @@ import './Coinstellation.css';
 const NODE_COLORS = new Map([
   ['wallet',      '#BF4E32'],
   ['exchange',    '#5B7EA6'],
-  ['protocol',    '#7A6B9E'],
+  ['protocol',    '#6E8B8A'],
   ['token',       '#B88A4A'],
   ['defi',        '#D4705A'],
   ['institution', '#2F8F67'],
