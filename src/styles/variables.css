@@ -40,13 +40,16 @@
   --ww-risk-dark: #8B3120;
   --ww-blush: #E8A090;
 
-  /* Node category */
+  /* Node category — matches Coinstellation's actual node taxonomy:
+     wallet, token, defi, nft, counterparty. `anomaly` is not a node type;
+     it is a ring/badge drawn on top of any node type to flag it, so it
+     gets its own non-fill indicator color instead of a NODE_COLORS entry. */
   --ww-node-token: #B88A4A;
   --ww-node-defi: #D4705A;
   --ww-node-nft: #2F8F67;
   --ww-node-wallet: #BF4E32;
-  --ww-node-exchange: #5B7EA6;
-  --ww-node-protocol: #6E8B8A;
+  --ww-node-counterparty: #C9A47A;
+  --ww-node-anomaly: #E4483C;
 
   /* Radii */
   --ww-radius-panel: 2px;

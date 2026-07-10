@@ -3,13 +3,13 @@
   "as_of": "2024-01-15T00:00:00Z",
   "subject": {
     "address_demo": "0xDEMO000...AAAA",
-    "label": "Demo Wallet A",
+    "label": "Demo Wallet (Subject)",
     "type": "wallet"
   },
   "nodes": [
     {
       "id": "node-a",
-      "label": "Demo Wallet A",
+      "label": "Demo Wallet (Subject)",
       "type": "wallet",
       "address_demo": "0xDEMO000...AAAA",
       "x": 400,
@@ -17,32 +17,32 @@
     },
     {
       "id": "node-b",
-      "label": "Demo Exchange 1",
-      "type": "exchange",
+      "label": "Demo Counterparty 1",
+      "type": "counterparty",
       "address_demo": "0xDEMO001...BBBB",
       "x": 220,
       "y": 160
     },
     {
       "id": "node-c",
-      "label": "Demo Protocol X",
-      "type": "protocol",
+      "label": "Demo DeFi Protocol X",
+      "type": "defi",
       "address_demo": "0xDEMO002...CCCC",
       "x": 580,
       "y": 160
     },
     {
       "id": "node-d",
-      "label": "Demo Wallet B",
-      "type": "wallet",
+      "label": "Demo Counterparty 2",
+      "type": "counterparty",
       "address_demo": "0xDEMO003...DDDD",
       "x": 140,
       "y": 380
     },
     {
       "id": "node-e",
-      "label": "Demo Wallet C",
-      "type": "wallet",
+      "label": "Demo Counterparty 3",
+      "type": "counterparty",
       "address_demo": "0xDEMO004...EEEE",
       "x": 640,
       "y": 400
@@ -65,11 +65,22 @@
     },
     {
       "id": "node-h",
-      "label": "Demo Wallet D",
-      "type": "wallet",
+      "label": "Demo Counterparty 4",
+      "type": "counterparty",
       "address_demo": "0xDEMO007...HHHH",
       "x": 560,
-      "y": 480
+      "y": 480,
+      "anomalies": [
+        "Transfer pattern in this demo fixture deviates from the wallet's typical cadence"
+      ]
+    },
+    {
+      "id": "node-i",
+      "label": "Demo NFT Collection",
+      "type": "nft",
+      "address_demo": "0xDEMO008...IIII",
+      "x": 480,
+      "y": 220
     }
   ],
   "edges": [
@@ -78,6 +89,7 @@
     { "id": "e-ad", "source": "node-a", "target": "node-d", "label": "transfer (demo)", "value_demo": 8500 },
     { "id": "e-ae", "source": "node-a", "target": "node-e", "label": "transfer (demo)", "value_demo": 5200 },
     { "id": "e-af", "source": "node-a", "target": "node-f", "label": "holds (demo)", "value_demo": 21000 },
+    { "id": "e-ai", "source": "node-a", "target": "node-i", "label": "holds (demo)", "value_demo": 6600 },
     { "id": "e-bg", "source": "node-b", "target": "node-g", "label": "lp (demo)", "value_demo": 9800 },
     { "id": "e-ch", "source": "node-c", "target": "node-h", "label": "reward (demo)", "value_demo": 4100 },
     { "id": "e-dg", "source": "node-d", "target": "node-g", "label": "swap (demo)", "value_demo": 3300 }
