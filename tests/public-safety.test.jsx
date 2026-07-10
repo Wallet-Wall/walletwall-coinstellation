@@ -52,4 +52,19 @@ describe('Public safety: disclaimers present', () => {
     expect(body).not.toMatch(/yield execution/);
     expect(body).not.toMatch(/live execution/);
   });
+
+  it('no visible text uses accusatory language for flagged/anomaly nodes', () => {
+    render(<App />);
+    const body = document.body.textContent.toLowerCase();
+    expect(body).not.toMatch(/malicious/);
+    expect(body).not.toMatch(/confirmed bad actor/);
+    expect(body).not.toMatch(/scammer/);
+  });
+
+  it('discloses this is a public conceptual demonstration, not the complete production app', () => {
+    render(<Disclaimer />);
+    const el = screen.getByTestId('disclaimer');
+    expect(el.textContent).toMatch(/public conceptual demonstration/i);
+    expect(el.textContent).toMatch(/not the complete production app/i);
+  });
 });

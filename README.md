@@ -1,6 +1,8 @@
 # Coinstellation
 
-Coinstellation is a read-only wallet and entity relationship graph. Click any node to inspect its type, demo address, and connections to other entities — wallets, exchanges, protocols, tokens, DeFi pools, and institutions — all from a single interactive SVG surface.
+Coinstellation is a read-only wallet and entity relationship graph. Click any node to inspect its type, demo address, and connections to other entities — wallets, tokens, DeFi protocols, NFT collections, and counterparties — all from a single interactive SVG surface. Nodes can also carry an anomaly ring, a separate indicator (not a node type) flagging a pattern noted in this demo's fixture data.
+
+This is a public-safe conceptual demonstration built by the WalletWall org to show how Coinstellation's wallet-relationship graph reads, using static fixtures rather than WalletWall's live provider pipeline. It is not the complete production application — see [`docs/PUBLIC_SAFE_SCOPE.md`](docs/PUBLIC_SAFE_SCOPE.md) for exactly what is and isn't in scope here. Nothing here is custody, execution, or investment advice, and conceptual demo output should not be read as equivalent to production analysis.
 
 Coinstellation is part of the [WalletWall](https://walletwall.org) analytics suite.
 
@@ -17,9 +19,21 @@ Coinstellation is part of the [WalletWall](https://walletwall.org) analytics sui
 - **Not financial advice.** Nothing in this surface constitutes financial advice.
 - **Not production quantum protection.** No quantum-resistant vault claims.
 
+## Node Types
+
+| Type | Meaning |
+|---|---|
+| `wallet` | The Ethereum address being explored (the anchor node) |
+| `token` | An ERC-20 token contract |
+| `defi` | A DeFi protocol contract |
+| `nft` | An NFT contract |
+| `counterparty` | Another address that transacted with the wallet but isn't otherwise classified |
+
+`anomaly` is not a node type — it's a ring drawn on top of any node above to flag a pattern noted in this demo's fixture data. Node categories are descriptive labels only; they do not establish ownership, identity, or institutional affiliation, and a flagged node is not an accusation of wrongdoing. See [`docs/DATA_FIXTURES.md`](docs/DATA_FIXTURES.md) for the full fixture schema.
+
 ## Tech Stack
 
-- React 18 + Vite 6
+- React 19 + Vite 8
 - SVG-based node/edge graph (no external graph library)
 - Static fixture data (no live API dependencies)
 - Vitest + Testing Library for tests

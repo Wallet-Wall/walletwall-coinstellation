@@ -16,17 +16,18 @@ Coinstellation ships with synthetic, clearly labeled demo data located in `src/d
   "as_of": "<ISO timestamp>",
   "subject": {
     "address_demo": "0xDEMO000...AAAA",
-    "label": "Demo Wallet A",
+    "label": "Demo Wallet (Subject)",
     "type": "wallet"
   },
   "nodes": [
     {
       "id": "node-a",
-      "label": "Demo Wallet A",
-      "type": "wallet" | "exchange" | "protocol" | "token" | "defi" | "institution",
+      "label": "Demo Wallet (Subject)",
+      "type": "wallet" | "token" | "defi" | "nft" | "counterparty",
       "address_demo": "0xDEMO000...AAAA",
       "x": 400,
-      "y": 300
+      "y": 300,
+      "anomalies": ["optional array of short, evidence-based fixture notes"]
     }
   ],
   "edges": [
@@ -43,14 +44,15 @@ Coinstellation ships with synthetic, clearly labeled demo data located in `src/d
 
 ### Node Types
 
-| Type | Color |
-|---|---|
-| `wallet` | Terracotta (`#BF4E32`) |
-| `exchange` | Steel blue (`#5B7EA6`) |
-| `protocol` | Muted slate teal (`#6E8B8A`) |
-| `token` | Warm amber (`#B88A4A`) |
-| `defi` | Brick (`#D4705A`) |
-| `institution` | Dark green (`#2F8F67`) |
+| Type | Meaning | Color |
+|---|---|---|
+| `wallet` | The Ethereum address being explored (the anchor node) | Terracotta (`#BF4E32`) |
+| `token` | An ERC-20 token contract | Warm amber (`#B88A4A`) |
+| `defi` | A DeFi protocol contract | Brick (`#D4705A`) |
+| `nft` | An NFT contract | Dark green (`#2F8F67`) |
+| `counterparty` | Another address that transacted with the wallet but isn't otherwise classified | Tan (`#C9A47A`) |
+
+`anomaly` is **not** a node type. A node of any type above becomes visually flagged — a ring is drawn around it — when its `anomalies` array is non-empty. This indicates a pattern noted in this demo's fixture data, not an accusation of wrongdoing, ownership, or institutional affiliation. The ring uses a separate color (`#E4483C`) from the node-type fill.
 
 ## Replacing the Fixture With Your Own Data
 

@@ -3,17 +3,32 @@ import fixture from './data/coinstellation.fixture.json';
 import Disclaimer from './components/Disclaimer.jsx';
 import './Coinstellation.css';
 
+// Coinstellation's node taxonomy: wallet (the address being explored), token
+// (ERC-20 contract), defi (DeFi protocol contract), nft (NFT contract), and
+// counterparty (another address that transacted with the wallet but isn't
+// otherwise classified). These labels are descriptive only — a node's
+// category does not establish ownership, identity, or institutional
+// affiliation.
 const NODE_COLORS = new Map([
-  ['wallet',      '#BF4E32'],
-  ['exchange',    '#5B7EA6'],
-  ['protocol',    '#6E8B8A'],
-  ['token',       '#B88A4A'],
-  ['defi',        '#D4705A'],
-  ['institution', '#2F8F67'],
+  ['wallet',       '#BF4E32'],
+  ['token',        '#B88A4A'],
+  ['defi',         '#D4705A'],
+  ['nft',          '#2F8F67'],
+  ['counterparty', '#C9A47A'],
 ]);
+
+// Anomaly is not a node type — it is a ring indicator drawn on top of any
+// node (of any type) whose fixture data carries an `anomalies` entry. It
+// flags a pattern observed in this demo's fixture, not an accusation of
+// wrongdoing.
+const ANOMALY_RING_COLOR = '#E4483C';
 
 function getNodeColor(type) {
   return NODE_COLORS.get(type) ?? '#C9A47A';
+}
+
+function nodeAnomalies(node) {
+  return Array.isArray(node?.anomalies) ? node.anomalies : [];
 }
 
 const NODE_R = 22;
@@ -97,6 +112,7 @@ export default function Coinstellation() {
                   (e) => e.source === node.id || e.target === node.id,
                 );
               const muted = selected && !isSelected && !isConnected;
+              const flagged = nodeAnomalies(node).length > 0;
 
               return (
                 <g
@@ -105,7 +121,7 @@ export default function Coinstellation() {
                   style={{ cursor: 'pointer' }}
                   onClick={() => setSelected(isSelected ? null : node.id)}
                   role="button"
-                  aria-label={`${node.label} (${node.type})`}
+                  aria-label={`${node.label} (${node.type})${flagged ? ' — flagged in this demo fixture' : ''}`}
                   aria-pressed={isSelected}
                   tabIndex={0}
                   onKeyDown={(e) => {
@@ -114,6 +130,16 @@ export default function Coinstellation() {
                     }
                   }}
                 >
+                  {flagged && (
+                    <circle
+                      className="cs-anomaly-ring"
+                      r={NODE_R + (isSelected ? 3 : 0) + 4}
+                      fill="none"
+                      stroke={ANOMALY_RING_COLOR}
+                      strokeWidth={1.5}
+                      opacity={muted ? 0.25 : 0.85}
+                    />
+                  )}
                   <circle
                     r={NODE_R + (isSelected ? 3 : 0)}
                     fill={color}
@@ -149,6 +175,12 @@ export default function Coinstellation() {
                 <span className="cs-legend-label">{type}</span>
               </div>
             ))}
+            {/* Anomaly is a ring drawn on top of any node type, not a node type
+                of its own — shown here as an open ring rather than a filled dot. */}
+            <div className="cs-legend-item">
+              <span className="cs-legend-ring" aria-hidden="true" />
+              <span className="cs-legend-label">anomaly ring</span>
+            </div>
           </div>
         </div>
 
@@ -175,6 +207,19 @@ export default function Coinstellation() {
                 <span className="cs-detail-key">Address (demo)</span>
                 <code className="cs-address">{selectedNode.address_demo}</code>
               </div>
+
+              {nodeAnomalies(selectedNode).length > 0 && (
+                <div className="cs-flags" data-testid="node-flags">
+                  <div className="cs-detail-key" style={{ marginBottom: 6 }}>
+                    Flagged in this demo fixture
+                  </div>
+                  {nodeAnomalies(selectedNode).map((reason) => (
+                    <div key={reason} className="cs-flag-row">
+                      {reason}
+                    </div>
+                  ))}
+                </div>
+              )}
 
               <div className="ww-label" style={{ margin: '18px 0 8px' }}>
                 Connections ({connectedEdges.length})

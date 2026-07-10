@@ -14,9 +14,12 @@ export default function Disclaimer() {
       }}
     >
       <strong style={{ color: 'rgba(30,26,20,0.72)', letterSpacing: 0.4 }}>Demo data only.</strong>{' '}
-      All values are synthetic fixture data. No wallet connection. No transactions. No custody.
-      No signing. No paid Dune execution. Not financial advice. Not production quantum protection.
-      Not audited vault safety. For real data, wire your own read-only source per{' '}
+      This is a public conceptual demonstration from the WalletWall org's research surface, not
+      the complete production app. All values are synthetic fixture data. No wallet connection.
+      No transactions. No custody. No signing. No paid Dune execution. Not financial advice.
+      Not production quantum protection. Not audited vault safety. A node's type or flagged
+      status is descriptive only — it does not establish ownership, identity, or wrongdoing.
+      For real data, wire your own read-only source per{' '}
       <code style={{ fontSize: 10 }}>docs/DATA_FIXTURES.md</code>.
     </aside>
   );
